@@ -1,0 +1,19 @@
+apiVersion: extensions/beta1minor
+kind: ResplicaSet
+metadata:
+  name: backend // должны различаться для реплик.
+spec:
+  replicas: 3 // 3 пода с докер-контейнерами внизу.
+  selector: // должны совпадать с названием пода (поле ).
+    matchLabels: 
+      tier: backend // должен быть как внизу имя пода.
+    template:
+      metadata:
+        labels:
+          tier: backend // вот это поле должно быть как в ямле пода.
+      spec:
+        containers:
+          - name: fpm
+            image: myregistry.local/mybuild:15.0.4 // если тут указано версия жестко, то если версия изменится в реджистри, 
+            // то этот выкинет ошибку. поэтому придумали деплоймент.
+            command: php-fpm

@@ -1,0 +1,11 @@
+apiVersion: 123
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 80 // запрос приходит на этот порт на сервер
+      targetPort: 8080 // прокидывает в докер-контейнер на этот порт.

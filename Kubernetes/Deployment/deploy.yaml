@@ -1,0 +1,19 @@
+apiVersion: extensions/apiV2
+kind: Deployment // хранит историю передеплоев. 
+// конфиг аналогичен реплике сет.
+metadata:
+  name: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: backend
+  template:
+    metadata:
+      labels:
+        tier: backend
+    spec:
+      containers:
+        - name: www
+          image: myregistry/mywww:14.0.2
+          command: /usr/bin/run
