@@ -1,0 +1,43 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"route.openshift.io/v1","kind":"Route","metadata":{"annotations":{},"labels":{"app":"app-katze","artifactId":"app-katze-openshift","buildTime":"20200707.120237","deploymentUnit":"app-katze-openshift","generatedBy":"openshift-maven-plugin","groupId":"","version":"1.14.70.35-SNAPSHOT"},"name":"app-katze","namespace":"oc-project-1"},"spec":{"host":"","path":"/","port":{"targetPort":"8080-tcp"},"tls":{"insecureEdgeTerminationPolicy":"Redirect","termination":"edge"},"to":{"kind":"Service","name":"app-katze"}}}
+    openshift.io/host.generated: 'true'
+  creationTimestamp: '2020-07-07T09:29:58Z'
+  labels:
+    app: app-katze
+    artifactId: app-katze-openshift
+    buildTime: '20200707.120237'
+    deploymentUnit: app-katze-openshift
+    generatedBy: openshift-maven-plugin
+    groupId: ''
+    version: 1.14.70.35-SNAPSHOT
+  name: app-katze
+  namespace: oc-project-1
+  resourceVersion: '14454354'
+  selfLink: /apis/route.openshift.io/v1/namespaces/oc-project-1/routes/app-katze
+  uid: 6cf10219-c034-11ea-ac98-c2a16f3dd721
+spec:
+  host: app-katze-oc-project-1.openshift.devops.t-systems.ru
+  path: /
+  port:
+    targetPort: 8080-tcp
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: app-katze
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+    - conditions:
+        - lastTransitionTime: '2020-07-07T09:29:58Z'
+          status: 'True'
+          type: Admitted
+      host: app-katze-oc-project-1.openshift.devops.t-systems.ru
+      routerName: router
+      wildcardPolicy: None

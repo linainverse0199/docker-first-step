@@ -1,0 +1,140 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{},"labels":{"app":"{{ .Values.appName}}","artifactId":"{{ .Values.appName}}-openshift","buildTime":"20200707.120237","deploymentUnit":"{{ .Values.appName}}-openshift","generatedBy":"openshift-maven-plugin","version":"1.14.70.35-SNAPSHOT"},"name":"{{ .Values.appName}}","namespace":"oc-project-1"},"spec":{"replicas":1,"selector":{"deploymentconfig":"{{ .Values.appName}}"},"strategy":{"rollingParams":{"intervalSeconds":5,"maxSurge":1,"maxUnavailable":1,"timeoutSeconds":600,"updatePeriodSeconds":5},"type":"Rolling"},"template":{"metadata":{"labels":{"app":"{{ .Values.appName}}","artifactId":"{{ .Values.appName}}-openshift","buildTime":"20200707.120237","deploymentUnit":"{{ .Values.appName}}-openshift","deploymentconfig":"{{ .Values.appName}}","generatedBy":"openshift-maven-plugin","version":"1.14.70.35-SNAPSHOT"}},"spec":{"containers":[{"env":[{"name":"CLUSTER","value":"SOLO"},{"name":"LOG_LEVEL_APP","value":"INFO"},{"name":"LOG_LEVEL_CATALINA","value":"WARN"},{"name":"LOG_LEVEL_CLIENT","value":"WARN"},{"name":"LOG_LEVEL_ROOT","value":"WARN"},{"name":"LOG_LEVEL_SPRING","value":"WARN"},{"name":"PORT_APP","value":"8080"},{"name":"PORT_MANAGEMENT","value":"9080"},{"name":"STAGE","value":"dev"},{"name":"TOMCAT_MAX_THREADS","value":"10"},{"name":"TOMCAT_MIN_THREADS","value":"5"}],"image":"registry.gitlab.com/t-challenge-group/tchallenge-service/t-challenge-service-app:dev","imagePullPolicy":"Always","livenessProbe":{"failureThreshold":3,"httpGet":{"path":"/admin/check","port":8080},"initialDelaySeconds":180,"periodSeconds":30,"successThreshold":1,"timeoutSeconds":15},"name":"{{ .Values.appName}}","ports":[{"containerPort":9080,"protocol":"TCP"}],"readinessProbe":{"failureThreshold":3,"httpGet":{"path":"/admin/health","port":9080},"initialDelaySeconds":90,"periodSeconds":30,"successThreshold":1,"timeoutSeconds":15},"resources":{"limits":{"cpu":"1000m","memory":"1536Mi"},"requests":{"cpu":"100m","memory":"256Mi"}},"terminationMessagePath":"/dev/termination-log"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","securityContext":{},"terminationGracePeriodSeconds":60}},"triggers":[{"type":"ConfigChange"}]},"status":{}}
+  creationTimestamp: '2020-07-07T09:29:58Z'
+  generation: 5
+  labels:
+    app: {{ .Values.appName}}
+    artifactId: {{ .Values.appName}}-openshift
+    buildTime: '20200707.120237'
+    deploymentUnit: {{ .Values.appName}}-openshift
+    generatedBy: openshift-maven-plugin
+    version: 1.14.70.35-SNAPSHOT
+  name: {{ .Values.appName}}
+  namespace: oc-project-1
+  resourceVersion: '15654683'
+  selfLink: >-
+    /apis/apps.openshift.io/v1/namespaces/oc-project-1/deploymentconfigs/{{ .Values.appName}}
+  uid: 6cca9edf-c034-11ea-ac98-c2a16f3dd721
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    deploymentconfig: {{ .Values.appName}}
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 5
+      maxSurge: 1
+      maxUnavailable: 1
+      timeoutSeconds: 600
+      updatePeriodSeconds: 5
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: {{ .Values.appName}}
+        artifactId: {{ .Values.appName}}-openshift
+        buildTime: '20200707.120237'
+        deploymentUnit: {{ .Values.appName}}-openshift
+        deploymentconfig: {{ .Values.appName}}
+        generatedBy: openshift-maven-plugin
+        version: 1.14.70.35-SNAPSHOT
+    spec:
+      containers:
+        - env:
+            - name: CLUSTER
+              value: SOLO
+            - name: LOG_LEVEL_APP
+              value: INFO
+            - name: LOG_LEVEL_CATALINA
+              value: WARN
+            - name: LOG_LEVEL_CLIENT
+              value: WARN
+            - name: LOG_LEVEL_ROOT
+              value: WARN
+            - name: LOG_LEVEL_SPRING
+              value: WARN
+            - name: PORT_APP
+              value: '8080'
+            - name: PORT_MANAGEMENT
+              value: '9080'
+            - name: STAGE
+              value: dev
+            - name: TOMCAT_MAX_THREADS
+              value: '10'
+            - name: TOMCAT_MIN_THREADS
+              value: '5'
+          image: >-
+            registry.gitlab.com/t-challenge-group/tchallenge-service/t-challenge-service-app:dev
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /admin/check
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 15
+          name: {{ .Values.appName}}
+          ports:
+            - containerPort: 9080
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /admin/health
+              port: 9080
+              scheme: HTTP
+            initialDelaySeconds: 90
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 15
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1536Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 60
+  test: false
+  triggers:
+    - type: ConfigChange
+status:
+  availableReplicas: 0
+  conditions:
+    - lastTransitionTime: '2020-07-07T09:29:58Z'
+      lastUpdateTime: '2020-07-07T09:29:58Z'
+      message: Deployment config does not have minimum availability.
+      status: 'False'
+      type: Available
+    - lastTransitionTime: '2020-07-12T20:55:06Z'
+      lastUpdateTime: '2020-07-12T20:55:06Z'
+      message: >-
+        replication controller "{{ .Values.appName}}-5" is waiting for pod
+        "{{ .Values.appName}}-5-deploy" to run
+      status: Unknown
+      type: Progressing
+  details:
+    causes:
+      - type: Manual
+    message: manual change
+  latestVersion: 5
+  observedGeneration: 5
+  replicas: 1
+  unavailableReplicas: 1
+  updatedReplicas: 1

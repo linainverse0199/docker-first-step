@@ -1,0 +1,11 @@
+appName: tchallenge-service-app
+release: release-1
+
+deployment:
+  replicaCount: 1
+  image: registry.gitlab.com/t-challenge-group/tchallenge-service
+service:
+  innerPort: 4567
+  outerPort: 80
+route:
+  host: tchallenge-service-route-2-projecton2206.openshift.devops.t-systems.ru

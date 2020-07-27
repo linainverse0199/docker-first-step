@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ $.Values.appName }}-{{ $.Values.release }}"
+  labels:
+    deploymentUnit: "{{ $.Values.appName }}-backend"
+    release: {{ .Values.release }}
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      deploymentUnit: "{{ $.Values.appName }}-backend"
+      release: {{ .Values.release }}
+  template:
+    metadata:
+      name: sturm-app-pod
+      labels:
+        deploymentUnit: "{{ $.Values.appName }}-backend"
+        release: {{ .Values.release }}
+    spec:
+      containers:
+        - name: sturm-app-container
+          image: {{ .Values.deployment.image }}
+          envFrom:
+            - configMapRef:
+                name: "{{ $.Values.appName }}-{{ $.Values.release }}-cm"

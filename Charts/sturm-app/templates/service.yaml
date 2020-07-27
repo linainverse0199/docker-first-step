@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ $.Values.appName }}-{{ $.Values.release }}-service"
+  labels:
+    deploymentUnit: "{{ $.Values.appName }}-backend"
+    release: {{ .Values.release }}
+spec:
+  selector:
+      deploymentUnit: "{{ $.Values.appName }}-backend"
+      release: {{ .Values.release }}
+  ports:
+    - name: "{{ $.Values.service.outerPort }}-tcp"
+      port: {{ .Values.service.outerPort }}
+      protocol: TCP
+      targetPort: {{ .Values.service.innerPort }}
+  type: ClusterIP

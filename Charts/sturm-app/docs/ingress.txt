@@ -1,0 +1,1 @@
+ingress is an alternative to service and is better way to provide access from outer network

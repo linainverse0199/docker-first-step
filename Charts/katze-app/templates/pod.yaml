@@ -1,0 +1,165 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    openshift.io/deployment-config.latest-version: '5'
+    openshift.io/deployment-config.name: app-katze
+    openshift.io/deployment.name: app-katze-5
+    openshift.io/scc: anyuid
+  creationTimestamp: '2020-07-12T20:55:09Z'
+  generateName: app-katze-5-
+  labels:
+    app: app-katze
+    artifactId: app-katze-openshift
+    buildTime: '20200707.120237'
+    deployment: app-katze-5
+    deploymentUnit: app-katze-openshift
+    deploymentconfig: app-katze
+    generatedBy: openshift-maven-plugin
+    version: 1.14.70.35-SNAPSHOT
+  name: app-katze-5-ltd96
+  namespace: oc-project-1
+  ownerReferences:
+    - apiVersion: v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicationController
+      name: app-katze-5
+      uid: f73d7bca-c481-11ea-8dfa-c2a16f3dd721
+  resourceVersion: '15654771'
+  selfLink: /api/v1/namespaces/oc-project-1/pods/app-katze-5-ltd96
+  uid: f90a00e7-c481-11ea-8dfa-c2a16f3dd721
+spec:
+  containers:
+    - env:
+        - name: CLUSTER
+          value: SOLO
+        - name: LOG_LEVEL_APP
+          value: INFO
+        - name: LOG_LEVEL_CATALINA
+          value: WARN
+        - name: LOG_LEVEL_CLIENT
+          value: WARN
+        - name: LOG_LEVEL_ROOT
+          value: WARN
+        - name: LOG_LEVEL_SPRING
+          value: WARN
+        - name: PORT_APP
+          value: '8080'
+        - name: PORT_MANAGEMENT
+          value: '9080'
+        - name: STAGE
+          value: dev
+        - name: TOMCAT_MAX_THREADS
+          value: '10'
+        - name: TOMCAT_MIN_THREADS
+          value: '5'
+      image: >-
+        registry.gitlab.com/t-challenge-group/tchallenge-service/t-challenge-service-app:dev
+      imagePullPolicy: Always
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /admin/check
+          port: 8080
+          scheme: HTTP
+        initialDelaySeconds: 180
+        periodSeconds: 30
+        successThreshold: 1
+        timeoutSeconds: 15
+      name: app-katze
+      ports:
+        - containerPort: 9080
+          protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /admin/health
+          port: 9080
+          scheme: HTTP
+        initialDelaySeconds: 90
+        periodSeconds: 30
+        successThreshold: 1
+        timeoutSeconds: 15
+      resources:
+        limits:
+          cpu: '1'
+          memory: 1536Mi
+        requests:
+          cpu: 100m
+          memory: 256Mi
+      securityContext:
+        capabilities:
+          drop:
+            - MKNOD
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-878qq
+          readOnly: true
+  dnsPolicy: ClusterFirst
+  imagePullSecrets:
+    - name: default-dockercfg-v9g6c
+  nodeName: vm00281
+  nodeSelector:
+    node-role.kubernetes.io/compute: 'true'
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    seLinuxOptions:
+      level: 's0:c30,c25'
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 60
+  tolerations:
+    - effect: NoSchedule
+      key: node.kubernetes.io/memory-pressure
+      operator: Exists
+  volumes:
+    - name: default-token-878qq
+      secret:
+        defaultMode: 420
+        secretName: default-token-878qq
+status:
+  conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2020-07-12T20:55:09Z'
+      status: 'True'
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: '2020-07-12T20:55:09Z'
+      message: 'containers with unready status: [app-katze]'
+      reason: ContainersNotReady
+      status: 'False'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: null
+      message: 'containers with unready status: [app-katze]'
+      reason: ContainersNotReady
+      status: 'False'
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: '2020-07-12T20:55:09Z'
+      status: 'True'
+      type: PodScheduled
+  containerStatuses:
+    - containerID: >-
+        docker://30132b29b2a19070b05234f46a9c752584e8e679a9535141a9de9aeaee94ac7b
+      image: >-
+        registry.gitlab.com/t-challenge-group/tchallenge-service/t-challenge-service-app:dev
+      imageID: >-
+        docker-pullable://registry.gitlab.com/t-challenge-group/tchallenge-service/t-challenge-service-app@sha256:f6d280b029d5dbe8d8aec53f5041100a1088272c6c6111613b9df76d4ed2e5fd
+      lastState: {}
+      name: app-katze
+      ready: false
+      restartCount: 0
+      state:
+        running:
+          startedAt: '2020-07-12T20:55:37Z'
+  hostIP: 192.168.200.12
+  phase: Running
+  podIP: 10.128.0.35
+  qosClass: Burstable
+  startTime: '2020-07-12T20:55:09Z'

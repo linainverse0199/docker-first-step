@@ -1,0 +1,2 @@
+  type: ClusterIP is default
+  NodePort provides access from outer network

@@ -1,0 +1,6 @@
+appName: tchallenge-db
+release: release-1
+
+deployment:
+  replicaCount: 1
+  image: registry.gitlab.com/t-challenge-group/tchallenge-db

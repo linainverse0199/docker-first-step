@@ -1,0 +1,29 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "ConfigMap",
+            "metadata": {
+                "name": "config-testapp",
+                "labels": {
+                    "app": "config-testapp",
+                    "artifactId": "app-testapp-openshift",
+                    "buildTime": "20200707.120231",
+                    "deploymentUnit": "app-testapp-openshift",
+                    "generatedBy": "openshift-maven-plugin",
+                    "groupId": "ch.voev.oevc.swisspass.benutzer",
+                    "version": "1.14.70.35-SNAPSHOT"
+                }
+            },
+            "data": {
+                "ENDPOINT": "https://some_link",
+                "O_ENDPOINT": "some_address"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        
+    }
+}
